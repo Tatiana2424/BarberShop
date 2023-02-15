@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33122.133
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BarberShop", "BarberShop\BarberShop.csproj", "{22AA201A-3CFE-40CD-BBC8-B88C88E15094}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BarberShop.WebApi", "BarberShop\BarberShop.WebApi.csproj", "{22AA201A-3CFE-40CD-BBC8-B88C88E15094}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BarberShop.DAL", "BarberShop.DAL\BarberShop.DAL.csproj", "{C7954082-6BDD-4C72-9937-C009D57E3F2A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BarberShop.DAL", "BarberShop.DAL\BarberShop.DAL.csproj", "{C7954082-6BDD-4C72-9937-C009D57E3F2A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BarberShop.BLL", "BarberShop.BLL\BarberShop.BLL.csproj", "{6D3136D9-5373-4B6C-B115-5D938171FB2B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BarberShop.BLL", "BarberShop.BLL\BarberShop.BLL.csproj", "{6D3136D9-5373-4B6C-B115-5D938171FB2B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
