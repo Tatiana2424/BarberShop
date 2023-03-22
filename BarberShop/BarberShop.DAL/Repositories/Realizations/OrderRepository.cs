@@ -5,9 +5,9 @@ using BarberShop.DAL.Repositories.Realizations.Base;
 
 namespace BarberShop.DAL.Repositories.Realizations;
 
-public class OrderController: RepositoryBase<Order>, IOrderRepository
+public class OrderRepository : RepositoryBase<Order>, IOrderRepository
 {
-    public OrderController(BarberShopDbContext dbContext)
+    public OrderRepository(BarberShopDbContext dbContext)
         : base(dbContext)
     {
     }
