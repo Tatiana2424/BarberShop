@@ -33,5 +33,5 @@ public class User
     [Required]
     public int statusId { get; set; }
 
-    public List<Order> UserOrder { get; set; }
+    public List<Order>? UserOrder { get; set; }
 }
