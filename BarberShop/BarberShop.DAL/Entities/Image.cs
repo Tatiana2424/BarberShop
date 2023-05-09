@@ -19,10 +19,10 @@ public class Image
     [Required]
     public string Url { get; set; }
 
-    public List<Category> CategoryImages { get; set; }
+    public List<Category>? CategoryImages { get; set; }
 
-    public List<Service> ServiceImages { get; set; }
+    public List<Service>? ServiceImages { get; set; }
 
-    public List<Barber> BarberImages { get; set; }
+    public List<Barber>? BarberImages { get; set; }
 
 }

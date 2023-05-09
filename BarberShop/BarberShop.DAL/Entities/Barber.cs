@@ -31,5 +31,5 @@ public class Barber
 
     public double Rate { get; set; }
 
-    public List<Order> OrederBarber { get; set; }
+    public List<Order>? OrederBarber { get; set; }
 }

@@ -6,6 +6,7 @@ using BarberShop.BLL.DTO;
 using BarberShop.BLL.Interfaces;
 using BarberShop.DAL.Entities;
 using AutoMapper;
+using System.Security.Claims;
 
 namespace BarberShop.WebApi.Controllers;
 
@@ -26,7 +27,8 @@ public class AuthenticationController : BaseApiController
         if (principal != null)
         {
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
-            return Ok(new { token = "my-token", user = new { username = model.Username } });
+            var userIdClaim = principal.FindFirstValue("user_id");
+            return Ok(new { token = "my-token", user = new { username = model.Username}, userId = userIdClaim });    
         }
         else
         {
@@ -63,8 +65,8 @@ public class AuthenticationController : BaseApiController
             // аутентифікація користувача після створення
             var principal = await _authService.Authenticate(model.Username, model.Password);
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
-
-            return Ok(new { token = "my-token", user = new { username = model.Username } });
+            var userIdClaim = principal.FindFirstValue("user_id");
+            return Ok(new { token = "my-token", user = new { username = model.Username }, userId = userIdClaim });
         }
         else
         {

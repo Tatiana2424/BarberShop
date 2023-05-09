@@ -28,7 +28,7 @@ public class User
     [StringLength(45)]
     public string Surname { get; set; }
 
-    public Status Status { get; set; }
+    public Status? Status { get; set; }
    
     [Required]
     public int statusId { get; set; }

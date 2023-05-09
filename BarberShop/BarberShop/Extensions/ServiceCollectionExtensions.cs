@@ -12,6 +12,7 @@ using BarberShop.BLL.Services;
 using BarberShop.BLL.Interfaces;
 using BarberShop.DAL.Repositories.Interfaces;
 using BarberShop.DAL.Repositories.Realizations;
+using Microsoft.AspNetCore.Identity;
 
 namespace BarberShop.WebApi.Extensions;
 
@@ -32,6 +33,7 @@ public static class ServiceCollectionExtensions
         services.AddMediatR(currentAssemblies);
 
         //services.AddScoped(typeof(IFact), typeof(Fact));
+        services.AddScoped<IOrderService, OrderService>();
         services.AddScoped(typeof(ILoggerService<>), typeof(LoggerService<>));
         //services.AddScoped<IRequestHandler<GetCategoryByIdQuery, Result<CategoryDTO>>, GetCategoryByIdHandler>();
     }
@@ -73,7 +75,7 @@ public static class ServiceCollectionExtensions
         {
             options.MinimumSameSitePolicy = SameSiteMode.Strict;
             options.HttpOnly = Microsoft.AspNetCore.CookiePolicy.HttpOnlyPolicy.Always;
-            options.Secure = CookieSecurePolicy.SameAsRequest;
+            options.Secure = CookieSecurePolicy.SameAsRequest;      
         });
 
         services.Configure<CookieAuthenticationOptions>(options =>
@@ -82,24 +84,29 @@ public static class ServiceCollectionExtensions
             options.ExpireTimeSpan = TimeSpan.FromMinutes(configuration.GetValue<int>("CookieSettings:ExpirationTimeInMinutes"));
             options.SlidingExpiration = configuration.GetValue<bool>("CookieSettings:SlidingExpiration");
         });
-    
-    //services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-    //.AddCookie(options =>
-    //{
-    //    options.Events.OnValidatePrincipal = async context =>
-    //    {
-    //        var expiresUtc = context.Properties.GetTokenValue("expires_at");
-    //        if (DateTimeOffset.TryParse(expiresUtc, out var expires) &&
-    //            expires < DateTimeOffset.UtcNow.AddMinutes(10))
-    //        {
-    //            var refreshToken = context.Properties.GetTokenValue("refresh_token");
-    //            var newToken = await new TokenService().RefreshToken(refreshToken); // Reference TokenService
-    //            context.Properties.UpdateTokenValue("access_token", newToken);
-    //            context.Properties.UpdateTokenValue("expires_at", GetExpirationTime().ToString("o"));
-    //            context.ShouldRenew = true;
-    //        }
-    //    };
-    //});
+
+        services.Configure<IdentityOptions>(options =>
+        {
+            options.ClaimsIdentity.UserIdClaimType = "user_id";
+        });
+
+        //services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+        //.AddCookie(options =>
+        //{
+        //    options.Events.OnValidatePrincipal = async context =>
+        //    {
+        //        var expiresUtc = context.Properties.GetTokenValue("expires_at");
+        //        if (DateTimeOffset.TryParse(expiresUtc, out var expires) &&
+        //            expires < DateTimeOffset.UtcNow.AddMinutes(10))
+        //        {
+        //            var refreshToken = context.Properties.GetTokenValue("refresh_token");
+        //            var newToken = await new TokenService().RefreshToken(refreshToken); // Reference TokenService
+        //            context.Properties.UpdateTokenValue("access_token", newToken);
+        //            context.Properties.UpdateTokenValue("expires_at", GetExpirationTime().ToString("o"));
+        //            context.ShouldRenew = true;
+        //        }
+        //    };
+        //});
     }
 
 }

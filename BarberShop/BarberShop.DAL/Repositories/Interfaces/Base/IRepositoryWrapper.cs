@@ -6,7 +6,6 @@ public interface IRepositoryWrapper
     IBarberRepository BarberRepository { get; }
     ICategoryRepository CategoryRepository { get; }
     IOrderRepository OrderRepository { get; }
-    IPlaceRepository PlaceRepository { get; }
     IServiceRepository ServiceRepository { get; }
     IStatusRepository StatusRepository { get; }
     IUserRepository UserRepository { get; }

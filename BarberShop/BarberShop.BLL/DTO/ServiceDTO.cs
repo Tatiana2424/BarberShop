@@ -17,13 +17,13 @@ public class ServiceDTO
 
     public int ImageId { get; set; }
 
-    public ImageDTO Image { get; set; }
+    //public ImageDTO Image { get; set; }
 
     public int Price { get; set; }
 
     public TimeSpan TimeToMake { get; set; }
 
-    public CategoryDTO Category { get; set; }
+    //public CategoryDTO Category { get; set; }
 
     public int CategoryId { get; set; }
 }

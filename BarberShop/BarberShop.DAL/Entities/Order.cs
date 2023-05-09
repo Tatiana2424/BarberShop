@@ -14,22 +14,18 @@ public class Order
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int Id { get; set; }
 
-    public Barber Barber { get; set; }
+    public Barber? Barber { get; set; }
 
     [Required]
     public int BarberId { get; set; }
 
-    public User User { get; set; }
+    public User? User { get; set; }
 
     public int UserId { get; set; }
 
-    public Service Service { get; set; }
+    public Service? Service { get; set; }
  
     public int ServiceId { get; set; }
-
-    public Place Place { get; set; }
-
-    public int PlaceId { get; set; }
 
     [Required]
     [DataType(DataType.Date)]

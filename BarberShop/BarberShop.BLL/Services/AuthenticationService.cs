@@ -16,6 +16,7 @@ using Microsoft.EntityFrameworkCore;
 using BarberShop.BLL.DTO;
 using AutoMapper;
 using BarberShop.DAL.Repositories.Interfaces.Base;
+using Microsoft.Extensions.Options;
 
 namespace BarberShop.BLL.Services;
 
@@ -53,8 +54,9 @@ public class AuthenticationService : Interfaces.IAuthenticationService
         var claims = new List<Claim>
         {
             new Claim(ClaimTypes.Name, user.Username),
-            new Claim(ClaimTypes.Email, user.Email),
-           // new Claim(ClaimTypes.Role, user.Status.StatusName)
+            //new Claim(ClaimTypes.Email, user.Email),
+            // new Claim(ClaimTypes.NameIdentifier, user.Id.ToString())
+           new Claim("user_id", user.Id.ToString())
         };
 
         var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);

@@ -17,6 +17,6 @@ public interface IAuthenticationService
 
     Task<User> GetUserByUsernameOrEmail(string username, string email);
 
-    Task<IdentityResult> CreateUser(UserDTO user, string password);
+    Task<IdentityResult> CreateUser(UserDTO user, string password); 
 }
 

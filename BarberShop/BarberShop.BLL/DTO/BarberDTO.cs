@@ -22,7 +22,5 @@ public class BarberDTO
 
     public int ImageId { get; set; }
 
-    public ImageDTO? Image { get; set; }
-
     public double Rate { get; set; }
 }

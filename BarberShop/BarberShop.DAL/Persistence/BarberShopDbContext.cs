@@ -20,7 +20,6 @@ public class BarberShopDbContext : DbContext
     public DbSet<Barber> Barbers { get; set; }
     public DbSet<Image> Images { get; set; }
     public DbSet<Order> Orders { get; set; }
-    public DbSet<Place> Places { get; set; }
     public DbSet<Service> Services { get; set; }
     public DbSet<Status> Statuses { get; set; }
     public DbSet<User> Users { get; set; }
@@ -79,10 +78,6 @@ public class BarberShopDbContext : DbContext
             .HasForeignKey(i => i.BarberId)
             .OnDelete(DeleteBehavior.Cascade);
 
-            entity.HasOne(i => i.Place)
-            .WithMany(c => c.PlaceOrder)
-            .HasForeignKey(i => i.PlaceId)
-            .OnDelete(DeleteBehavior.Cascade);
 
             entity.HasOne(i => i.User)
             .WithMany(c => c.UserOrder)

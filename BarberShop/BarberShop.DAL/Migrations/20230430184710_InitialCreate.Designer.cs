@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BarberShop.DAL.Migrations
 {
     [DbContext(typeof(BarberShopDbContext))]
-    [Migration("20230219204514_InitialCreate")]
+    [Migration("20230430184710_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -67,7 +67,7 @@ namespace BarberShop.DAL.Migrations
                             Id = 1,
                             Description = "I like to communicate with customers",
                             Experience = 1,
-                            ImageId = 17,
+                            ImageId = 19,
                             Name = "Bob",
                             Position = "Barber",
                             Rate = 4.5
@@ -77,7 +77,7 @@ namespace BarberShop.DAL.Migrations
                             Id = 2,
                             Description = "I like to communicate with customers",
                             Experience = 3,
-                            ImageId = 17,
+                            ImageId = 20,
                             Name = "David",
                             Position = "Barber",
                             Rate = 3.5
@@ -87,7 +87,7 @@ namespace BarberShop.DAL.Migrations
                             Id = 3,
                             Description = "I like to communicate with customers",
                             Experience = 5,
-                            ImageId = 17,
+                            ImageId = 18,
                             Name = "Tom",
                             Position = "Barber",
                             Rate = 5.0
@@ -217,19 +217,19 @@ namespace BarberShop.DAL.Migrations
                         {
                             Id = 6,
                             Title = "french crop",
-                            Url = "../images/The-French-Crop.jpg"
+                            Url = "../images/french_crop.jpg"
                         },
                         new
                         {
                             Id = 7,
                             Title = "slick back",
-                            Url = "../images/The-Slick-Back-Hairstyle.jpg"
+                            Url = "../images/slick_back.jpg"
                         },
                         new
                         {
                             Id = 8,
                             Title = "side part",
-                            Url = "../images/The-Side-Part.jpg"
+                            Url = "../images/side_part.jpg"
                         },
                         new
                         {
@@ -284,6 +284,24 @@ namespace BarberShop.DAL.Migrations
                             Id = 17,
                             Title = "camouflage beard",
                             Url = "./images/camouflage.jpg"
+                        },
+                        new
+                        {
+                            Id = 18,
+                            Title = "barber tom",
+                            Url = "./images/barber_tom.jpg"
+                        },
+                        new
+                        {
+                            Id = 19,
+                            Title = "barber bob",
+                            Url = "./images/barber_bob.jpg"
+                        },
+                        new
+                        {
+                            Id = 20,
+                            Title = "barber david",
+                            Url = "./images/barber_david.jpg"
                         });
                 });
 
@@ -296,9 +314,6 @@ namespace BarberShop.DAL.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("BarberId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PlaceId")
                         .HasColumnType("int");
 
                     b.Property<int>("ServiceId")
@@ -317,39 +332,39 @@ namespace BarberShop.DAL.Migrations
 
                     b.HasIndex("BarberId");
 
-                    b.HasIndex("PlaceId");
-
                     b.HasIndex("ServiceId");
 
                     b.HasIndex("UserId");
 
                     b.ToTable("Orders");
-                });
-
-            modelBuilder.Entity("BarberShop.DAL.Entities.Place", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Places");
 
                     b.HasData(
                         new
                         {
-                            Id = 1
+                            Id = 1,
+                            BarberId = 1,
+                            ServiceId = 9,
+                            UserId = 1,
+                            date = new DateTime(2023, 5, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            time = new TimeSpan(0, 10, 30, 0, 0)
                         },
                         new
                         {
-                            Id = 2
+                            Id = 2,
+                            BarberId = 1,
+                            ServiceId = 4,
+                            UserId = 1,
+                            date = new DateTime(2023, 5, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            time = new TimeSpan(0, 11, 30, 0, 0)
                         },
                         new
                         {
-                            Id = 3
+                            Id = 3,
+                            BarberId = 1,
+                            ServiceId = 1,
+                            UserId = 1,
+                            date = new DateTime(2023, 5, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            time = new TimeSpan(0, 12, 0, 0, 0)
                         });
                 });
 
@@ -396,7 +411,7 @@ namespace BarberShop.DAL.Migrations
                         {
                             Id = 1,
                             CategoryId = 1,
-                            Description = "The French Crop is classically famous because it is so simple. There isn’t much hair to distract from your face, hence why it has worked so well for many generations; it is minimalist. Synonymous with the ‘Caesar Cut’, the French crop boasts shorter sides with similarly cut locks up top. Incredibly versatile, this is a balanced haircut because there is not too much distinction between the hair up top and the hair on the sides of the head.",
+                            Description = "The French Crop is classically famous because it is so simple. ",
                             ImageId = 6,
                             Name = "french crop",
                             Price = 100,
@@ -406,7 +421,7 @@ namespace BarberShop.DAL.Migrations
                         {
                             Id = 2,
                             CategoryId = 1,
-                            Description = "Slicked back hair is sleek and a statement, but it is still nonetheless classic. It does work well when the hair has grown out but is also just as easy to achieve with an undercut. Our ultimate style inspiration for slicked back tresses? Johnny Depp in Cry Baby, where Depp’s strands were combed back with a glossy finish.",
+                            Description = "The slick back is a stylish hairstyle for men who want a cool and sleek look.",
                             ImageId = 7,
                             Name = "slick back",
                             Price = 90,
@@ -416,7 +431,7 @@ namespace BarberShop.DAL.Migrations
                         {
                             Id = 3,
                             CategoryId = 1,
-                            Description = "Whether it is the side parts of the Twenties, Forties, Sixties, or contemporary versions that you identify with, the side part may just well be the most versatile and iconic classic hairstyle of all time. Ultra-refined or texturized adaptations are great, and these versions highlight the beauty of this hairstyle – it can look as mature or as youthful as you want.",
+                            Description = "Whether it is the side parts of the Twenties, Forties, Sixties.",
                             ImageId = 8,
                             Name = "side part",
                             Price = 110,
@@ -466,9 +481,9 @@ namespace BarberShop.DAL.Migrations
                         {
                             Id = 8,
                             CategoryId = 4,
-                            Description = "Tapered sides are great for kids haircuts if you don’t want a very short fade. Plus, a side swept fringe can be an easy hairstyle even your little boy can style himself.",
+                            Description = "Tapered sides are great for kids haircuts if you don’t want a very short fade. ",
                             ImageId = 13,
-                            Name = "tapered sides with side swept fringe",
+                            Name = "tapered sides",
                             Price = 75,
                             TimeToMake = new TimeSpan(0, 0, 55, 0, 0)
                         },
@@ -570,6 +585,18 @@ namespace BarberShop.DAL.Migrations
                     b.HasIndex("statusId");
 
                     b.ToTable("Users");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Email = "bob@gmail.com",
+                            Name = "Bob",
+                            Password = "bob",
+                            Surname = "Bob",
+                            Username = "Bob",
+                            statusId = 1
+                        });
                 });
 
             modelBuilder.Entity("BarberShop.DAL.Entities.Barber", b =>
@@ -602,12 +629,6 @@ namespace BarberShop.DAL.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("BarberShop.DAL.Entities.Place", "Place")
-                        .WithMany("PlaceOrder")
-                        .HasForeignKey("PlaceId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("BarberShop.DAL.Entities.Service", "Service")
                         .WithMany("ServiceOrder")
                         .HasForeignKey("ServiceId")
@@ -621,8 +642,6 @@ namespace BarberShop.DAL.Migrations
                         .IsRequired();
 
                     b.Navigation("Barber");
-
-                    b.Navigation("Place");
 
                     b.Navigation("Service");
 
@@ -676,11 +695,6 @@ namespace BarberShop.DAL.Migrations
                     b.Navigation("CategoryImages");
 
                     b.Navigation("ServiceImages");
-                });
-
-            modelBuilder.Entity("BarberShop.DAL.Entities.Place", b =>
-                {
-                    b.Navigation("PlaceOrder");
                 });
 
             modelBuilder.Entity("BarberShop.DAL.Entities.Service", b =>

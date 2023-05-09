@@ -17,5 +17,5 @@ public class CategoryDTO
 
     public int ImageId { get; set; }
 
-    public ImageDTO? Image { get; set; }
+    //public ImageDTO? Image { get; set; }
 }

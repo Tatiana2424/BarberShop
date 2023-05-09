@@ -25,5 +25,5 @@ public class Category
 
     public Image? Image { get; set; }
 
-    public List<Service> CategoryServices { get; set; }
+    public List<Service>? CategoryServices { get; set; }
 }

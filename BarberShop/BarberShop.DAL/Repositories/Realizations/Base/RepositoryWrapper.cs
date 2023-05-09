@@ -14,8 +14,6 @@ public class RepositoryWrapper : IRepositoryWrapper
 
     private IOrderRepository _orderRepository;
 
-    private IPlaceRepository _placeRepository;
-
     private IServiceRepository _serviceRepository;
 
     private IStatusRepository _statusRepository;
@@ -60,17 +58,7 @@ public class RepositoryWrapper : IRepositoryWrapper
             return _orderRepository;
         }
     }
-    public IPlaceRepository PlaceRepository
-    {
-        get
-        {
-            if (_placeRepository is null)
-            {
-                _placeRepository = new PlaceRepository(_barberShopDbContext);
-            }
-            return _placeRepository;
-        }
-    }
+  
     public IServiceRepository ServiceRepository
     {
         get

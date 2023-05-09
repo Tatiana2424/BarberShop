@@ -48,19 +48,19 @@ public static class ModelBuilderExtensions
             {
                 Id = 6,
                 Title = "french crop",
-                Url = "../images/The-French-Crop.jpg"
+                Url = "../images/french_crop.jpg"
             },
             new Image
             {
                 Id = 7,
                 Title = "slick back",
-                Url = "../images/The-Slick-Back-Hairstyle.jpg"
+                Url = "../images/slick_back.jpg"
             },
             new Image
             {
                 Id = 8,
                 Title = "side part",
-                Url = "../images/The-Side-Part.jpg"
+                Url = "../images/side_part.jpg"
             },
             new Image
             {
@@ -115,6 +115,24 @@ public static class ModelBuilderExtensions
                 Id = 17,
                 Title = "camouflage beard",
                 Url = "./images/camouflage.jpg"
+            },
+            new Image
+            {
+                Id = 18,
+                Title = "barber tom",
+                Url = "./images/barber_tom.jpg"
+            },
+            new Image
+            {
+                Id = 19,
+                Title = "barber bob",
+                Url = "./images/barber_bob.jpg"
+            },
+            new Image
+            {
+                Id = 20,
+                Title = "barber david",
+                Url = "./images/barber_david.jpg"
             }
         ) ;
 
@@ -156,12 +174,6 @@ public static class ModelBuilderExtensions
             }
         );
 
-        modelBuilder.Entity <Place>().HasData(
-            new Place { Id = 1 },
-            new Place { Id = 2 },
-            new Place { Id = 3 }
-        );
-
         modelBuilder.Entity<Status>().HasData(
             new Status 
             { 
@@ -175,11 +187,7 @@ public static class ModelBuilderExtensions
            {
                Id = 1,
                Name = "french crop",
-               Description = "The French Crop is classically famous because it is so simple. " +
-                   "There isn’t much hair to distract from your face, hence why it has worked so well for " +
-                   "many generations; it is minimalist. Synonymous with the ‘Caesar Cut’, the French crop boasts shorter " +
-                   "sides with similarly cut locks up top. Incredibly versatile, this is a balanced haircut because there is not too " +
-                   "much distinction between the hair up top and the hair on the sides of the head.",
+               Description = "The French Crop is classically famous because it is so simple. ",
                ImageId = 6,
                Price = 100,
                TimeToMake = new TimeSpan(1, 0, 0),
@@ -189,10 +197,7 @@ public static class ModelBuilderExtensions
            {
                Id = 2,
                Name = "slick back",
-               Description = "Slicked back hair is sleek and a statement, but it is still nonetheless classic. " +
-                   "It does work well when the hair has grown out but is also just as easy to achieve with an undercut. " +
-                   "Our ultimate style inspiration for slicked back tresses? " +
-                   "Johnny Depp in Cry Baby, where Depp’s strands were combed back with a glossy finish.",
+               Description = "The slick back is a stylish hairstyle for men who want a cool and sleek look.",
                ImageId = 7,
                Price = 90,
                TimeToMake = new TimeSpan(0, 50, 0),
@@ -203,10 +208,7 @@ public static class ModelBuilderExtensions
            {
                Id = 3,
                Name = "side part",
-               Description = "Whether it is the side parts of the Twenties, Forties, Sixties, " +
-                   "or contemporary versions that you identify with, the side part may just well be the most versatile" +
-                   " and iconic classic hairstyle of all time. Ultra-refined or texturized adaptations are great," +
-                   " and these versions highlight the beauty of this hairstyle – it can look as mature or as youthful as you want.",
+               Description = "Whether it is the side parts of the Twenties, Forties, Sixties.",
                ImageId = 8,
                Price = 110,
                TimeToMake = new TimeSpan(1, 10, 0),
@@ -255,9 +257,8 @@ public static class ModelBuilderExtensions
            new Service
            {
                Id = 8,
-               Name = "tapered sides with side swept fringe",
-               Description = "Tapered sides are great for kids haircuts if you don’t want a very short fade. " +
-                   "Plus, a side swept fringe can be an easy hairstyle even your little boy can style himself.",
+               Name = "tapered sides",
+               Description = "Tapered sides are great for kids haircuts if you don’t want a very short fade. ",
                ImageId = 13,
                Price = 75,
                TimeToMake = new TimeSpan(0, 55, 0),
@@ -304,9 +305,9 @@ public static class ModelBuilderExtensions
                 Description = "I like to communicate with customers",
                 Position = "Barber",
                 Experience = 1,
-                ImageId = 17,
+                ImageId = 19,
                 Rate = 4.5,
-            },
+            }, 
             new Barber
             {
                 Id = 2,
@@ -314,7 +315,7 @@ public static class ModelBuilderExtensions
                 Description = "I like to communicate with customers",
                 Position = "Barber",
                 Experience = 3,
-                ImageId = 17,
+                ImageId = 20,
                 Rate = 3.5,
             },
             new Barber
@@ -324,10 +325,53 @@ public static class ModelBuilderExtensions
                 Description = "I like to communicate with customers",
                 Position = "Barber",
                 Experience = 5,
-                ImageId = 17,
+                ImageId = 18,
                 Rate = 5,
             }
 
         );
+        modelBuilder.Entity<Order>().HasData(
+            new Order
+            {
+                Id = 1,
+                BarberId = 1,
+                UserId = 1,
+                ServiceId = 9,
+                date = new DateTime(2023, 5, 1),
+                time = new TimeSpan(10, 30, 0),
+            },
+            new Order
+            {
+                Id = 2,
+                BarberId = 1,
+                UserId = 1,
+                ServiceId = 4,
+                date = new DateTime(2023, 5, 1),
+                time = new TimeSpan(11, 30, 0),
+            },
+            new Order
+            {
+                Id = 3,
+                BarberId = 1,
+                UserId = 1,
+                ServiceId = 1,
+                date = new DateTime(2023, 5, 1),
+                time = new TimeSpan(12, 00, 0),
+            }
+
+        );
+        modelBuilder.Entity<User>().HasData(
+           new User
+           {
+               Id = 1,
+               Username = "Bob",
+               Password = "bob",
+               Email = "bob@gmail.com",
+               Name = "Bob",
+               Surname = "Bob",
+               statusId = 1
+           }
+
+       );
     }
 }
